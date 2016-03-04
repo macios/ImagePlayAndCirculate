@@ -28,7 +28,6 @@
         [muArr addObject:[arr lastObject]];
         [muArr addObjectsFromArray:arr];
         [muArr addObject:[arr firstObject]];
-        
         _arr = [NSArray arrayWithArray:muArr];
         
         _scrollview=[[UIScrollView alloc]init];
