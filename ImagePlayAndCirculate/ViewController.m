@@ -6,22 +6,36 @@
 //  Copyright © 2015年 oc. All rights reserved.
 //
 
+#define XWide self.view.frame.size.width
+
 #import "ViewController.h"
+#import "ImageCircleView.h"
 
-@interface ViewController ()
-
+@interface ViewController ()<UIScrollViewDelegate>
+{
+    NSMutableArray *_dataArr;//存放图片的数组
+}
+@property (strong, nonatomic)UIScrollView *scrollview;
+@property (strong, nonatomic)UIPageControl *pageControl;
+@property (nonatomic, strong)NSTimer *timer;
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    ImageCircleView *imageView = [[ImageCircleView alloc]initWithFrame:CGRectMake(0, 64, XWide, 100) andImageType:ImageData andImageArr:@[UIImageJPEGRepresentation([UIImage imageNamed:@"火影01"],0.5) ,UIImageJPEGRepresentation([UIImage imageNamed:@"火影02"],0.5),UIImageJPEGRepresentation([UIImage imageNamed:@"火影03"],0.5),UIImageJPEGRepresentation([UIImage imageNamed:@"火影04"],0.5)] andCurrentPageColor:[UIColor blueColor] andOtherPageColor:[UIColor lightGrayColor] andTime:2 andFather:self.view];
+    
+    imageView.chickBtn = ^(int index){
+        [self process:index];
+    };
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)process:(int)index{
+    NSLog(@"%d",index);
 }
 
 @end
